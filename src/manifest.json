@@ -4,6 +4,10 @@
   "name": "Whisperer",
   "version": "1.0",
 
+  "background": {
+    "service_worker": "background.js"
+  },
+
   "description": "Lateral blog post demo extension",
 
   "content_scripts" : [
@@ -11,6 +15,12 @@
       "js": ["contentscript.js"],
       "matches": ["<all_urls>"]
     }
-  ]
+  ],
+
+  "action": {
+    "default_icon": "assets/test-icon.png",
+    "default_title": "Whisperer popup to be renamed",
+    "default_popup": "popup.html"
+  }
 
 }
