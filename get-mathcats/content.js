@@ -1,9 +1,10 @@
-let paragraphs = document.getElementsByTagName('p');
+alert('first alert')
 
-for (let i = 0, l = paragraphs.length; i < l; i++) {
+let mathitems = window.MathJax.Hub.getAllJax();
+
+for (let i = 0, l = mathitems.length; i < l; i++) {
     // paragraphs[i].src = 'http://placekitten.com/' + paragraphs[i].width + '/' + paragraphs[i].height;
-    console.log('found the');
-    alert('found the')
+    console.log('found math item');
+    alert('found math item')
 }
 
-// let math = MathJax.startup.document.getMathItemsWithin(document.body);
