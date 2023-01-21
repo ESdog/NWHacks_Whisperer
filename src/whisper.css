@@ -1,0 +1,8 @@
+.body{
+    height : 300px;
+    width : 300px;
+}
+
+.buttonImg {
+    background-image: url("../img/search.png");
+}
