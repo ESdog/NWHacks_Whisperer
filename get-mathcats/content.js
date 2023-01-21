@@ -1,7 +1,9 @@
-let images = document.getElementsByTagName('img');
+let paragraphs = document.getElementsByTagName('p');
 
-for (let i = 0, l = images.length; i < l; i++) {
-    images[i].src = 'http://placekitten.com/' + images[i].width + '/' + images[i].height;
+for (let i = 0, l = paragraphs.length; i < l; i++) {
+    // paragraphs[i].src = 'http://placekitten.com/' + paragraphs[i].width + '/' + paragraphs[i].height;
+    console.log('found the');
+    alert('found the')
 }
 
-let math = MathJax.startup.document.getMathItemsWithin(document.body);
+// let math = MathJax.startup.document.getMathItemsWithin(document.body);
