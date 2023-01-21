@@ -11,6 +11,12 @@
       "js": ["contentscript.js"],
       "matches": ["<all_urls>"]
     }
-  ]
+  ],
+
+  "action": {
+    "default_icon": "assets/ext-icon.png",
+    "default_title": "Whisperer popup to be renamed",
+    "default_popup": "popup.html"
+  }
 
 }
