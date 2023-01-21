@@ -4,6 +4,13 @@
   "name": "Whisperer",
   "version": "1.0",
 
-  "description": "Lateral blog post demo extension"
+  "description": "Lateral blog post demo extension",
+
+  "content_scripts" : [
+    {
+      "js": ["contentscript.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 
 }
