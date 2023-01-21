@@ -1,5 +1,9 @@
 
-window.onload = function() {getAllMathItems()};
+window.onload = function() {
+    console.log("Hello World");
+    alert("hi");
+    getAllMathItems();
+};
 
 // returns array of all math jax objects
 const getAllMathItems = () => {

@@ -4,6 +4,10 @@
   "name": "Whisperer",
   "version": "1.0",
 
+  "background": {
+    "service_worker": "background.js"
+  },
+
   "description": "Lateral blog post demo extension",
 
   "content_scripts" : [
