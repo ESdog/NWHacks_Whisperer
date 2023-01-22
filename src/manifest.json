@@ -12,6 +12,11 @@
       "matches": ["<all_urls>"]
     }
   ],
+  
+  "web_accessible_resources": [{
+    "resources": [ "mathScript.js" ],
+    "matches": [ "<all_urls>" ]
+  }],
 
   "action": {
     "default_icon": "assets/test-icon.png",
