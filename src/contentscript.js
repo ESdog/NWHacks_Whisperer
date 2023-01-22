@@ -30,10 +30,14 @@ window.addEventListener("message", (event)=>{
     // Normally you would check event.origin
     // To verify the targetOrigin matches
     // this window's domain
-    alert('Message received by contentscript')
-    // event.data contains the message sent
-    alert('${event.data}')
-    // txt.value=`Name is ${event.data.pName} Age is  ${event.data.pAge}` ;
+    const origin = event.data.type;
+
+    if (origin && origin == 'FROM_PAGE') {
+        alert('Message received by contentscript');
+        const ids = event.data.essential;
+        const tex = event.data.essential.tex;
+        console.log(ids);
+    }
 });
 
 

@@ -45,6 +45,9 @@ for (const mathItem in mathItems) {
     originalTexts.push(mathItem.originalText);
 }
 
+console.log(inputIds);
+console.log(originalTexts);
+
 // combine arrays into object
 mathItems = {ids: inputIds, tex: originalTexts};
 
