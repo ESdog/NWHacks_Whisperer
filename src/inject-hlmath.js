@@ -10,15 +10,14 @@ window.addEventListener("message", (event)=>{
     const origin = event.data.type;
 
     if (origin && origin == 'FROM_PAGE') {
-        alert('Math received by contentscript');
+        alert('Math received by inject-hlmath');
         ids = event.data.essential.ids;
         tex = event.data.essential.tex;
-        scanItemsForMatch(userInputString, ids, tex);
     } else if (origin && origin == 'FROM_USER') {
-        alert('User input received by contentscript');
+        alert('User input received by inject-hlmath');
         const input = event.data.essential;
 
-        scanItemsForMatch(input);
+        scanItemsForMatch(input, ids, tex);
     }
 });
 
@@ -41,7 +40,7 @@ const ESCAPE_CHARACTERS = {
 const scanItemsForMatch = (userInputString, ids, tex) => {
     let matchedElementIds = [];
     for (let i = 0; i < ids.length; i++) {
-        latexString = removeDoubleBackslash(tex[i]);
+        let latexString = removeDoubleBackslash(tex[i]);
         userInputString = removeSingleBackslash(userInputString);
 
         if (latexString.includes(userInputString)) {

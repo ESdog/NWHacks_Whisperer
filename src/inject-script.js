@@ -77,7 +77,12 @@ const talkToMathJaxV2 = () => {
 const talkToMathJaxV3 = () => {
     const arr = window.MathJax.startup.document.getMathItemsWithin(document);
 
-}
+// combine arrays into object
+    const mathItems = {domain: `MathJax Version ` + window.MathJax.version,
+        ids: [],
+        tex: []};
+
+    return mathItems;}
 
 
 // post message with sender address, mathJax version (whether content empty), and content
