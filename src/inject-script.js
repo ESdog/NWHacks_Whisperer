@@ -10,14 +10,13 @@ const getAllMathItems = () => {
         console.log('Searching MathJax version' + mathJaxObj.version);
         ret = talkToMathJaxV2();
     } else if (mathJaxObj && mathJaxObj.version[0] == '3') {
-        console.log('Searching MathJax version ' + mathJaxObj.version);
+        console.log('Searching MathJax version' + mathJaxObj.version);
         ret = talkToMathJaxV3();
     } else { // no mathjax
         console.log('Searching lurking image math... wikmedia API?');
         ret = searchImgAlt();
     }
 
-    console.log(ret);
     return ret;
 }
 
@@ -33,6 +32,9 @@ const searchImgAlt = () => {
         const img = allImages[i];
 
         assignId(img,i);
+
+        console.log(img.id);
+        console.log(img.className);
 
         if (img.className.includes(`math`) || (img.className.includes(`latex`))) {
             imgIds.push(img.id);
@@ -76,7 +78,7 @@ const talkToMathJaxV2 = () => {
     return mathItems;
 }
 
-// TODO use v3 syntax to get math items
+// use v3 syntax to get math items
 const talkToMathJaxV3 = () => {
     const arr = window.MathJax.startup.document.getMathItemsWithin(document);
 
