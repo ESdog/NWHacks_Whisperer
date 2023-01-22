@@ -8,8 +8,11 @@ function injectScript(file_path, tag) {
     script.setAttribute('src', file_path);
     node.appendChild(script);
 }
-
+// inject get math script
 injectScript(chrome.runtime.getURL('src/inject-script.js'), 'body');
+
+// inject highlight latex script
+injectScript(chrome.runtime.getURL('src/inject-hlmath.js'), 'body');
 
 console.log('<----- Inject script injected into DOM ----->');
 

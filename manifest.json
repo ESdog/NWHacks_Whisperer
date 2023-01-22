@@ -14,7 +14,7 @@
   ],
   
   "web_accessible_resources": [{
-    "resources": [ "src/inject-script.js" ],
+    "resources": [ "src/inject-script.js", "src/inject-hlmath.js" ],
     "matches": [ "<all_urls>" ]
   }],
 
