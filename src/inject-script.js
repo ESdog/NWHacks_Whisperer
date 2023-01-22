@@ -36,9 +36,16 @@ const getAllMathItems = () => {
 
 let mathItems = getAllMathItems();
 
+let inputIds = [];
+let originalTexts = [];
 
+for (const mathItem in mathItems) {
+    inputIds.push(mathItem.inputID);
+    originalTexts.push(mathItem.originalText);
+}
 
-mathItems = JSON.parse(JSON.stringify(mathItems));
+mathItems = {ids: inputIds, tex: originalTexts};
+
 window.postMessage({ type: "FROM_PAGE", essential: mathItems });
 
 
