@@ -8,6 +8,9 @@ const regexBtn = document.getElementById("RegexBtn");
 let state = false;
 
 search.addEventListener("keyup", function () {
+    if(search.value == "") {
+        return;
+    }
     getRegexOccurences(search.value);
 
     // system below should be unneeded
