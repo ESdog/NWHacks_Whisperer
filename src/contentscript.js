@@ -25,7 +25,9 @@ window.addEventListener("message", function (event) {
 }, false);
 
 
-// ========================= get from insert-script
+// ========================= get math items from insert-script, store as global variable
+let ids;
+let tex;
 window.addEventListener("message", (event)=>{
     // Normally you would check event.origin
     // To verify the targetOrigin matches
@@ -34,27 +36,18 @@ window.addEventListener("message", (event)=>{
 
     if (origin && origin == 'FROM_PAGE') {
         alert('Message received by contentscript');
-        const ids = event.data.essential;
-        const tex = event.data.essential.tex;
-        console.log(ids);
+        ids = event.data.essential;
+        tex = event.data.essential.tex;
     }
 });
 
 
-//========== ignore below
+// ========== ignore below
 
 
 // returns array of all math jax objects
 const getAllMathItems = () => {
-    const mathJaxObj = window.MathJax;
-
-    if (mathJaxObj && mathJaxObj.version[0] == '2') {
-        const mathItems = mathJaxObj.Hub.getAllJax();
-        return mathItems;
-    } else {
-        console.log("MathJax version 2 not found on site as window.MathJax = " + mathJaxObj );
-        return;
-    }
+    return ids,
 }
 
 // ERROR: does not like backslashes
