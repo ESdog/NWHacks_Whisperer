@@ -1,5 +1,13 @@
 # NWHacks_Whisperer
 
+## What it does
+We support regex search for all sites. Math search works on MathJax and image math sites, including:
+
+- Wikipedia
+- Stack Exchange
+- AoPS forums
+- our online textbooks, DiffEqs and CLP!
+
 ## Credits
 
 <a target="_blank" href="https://icons8.com/icon/83801/search-more">Search More</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
