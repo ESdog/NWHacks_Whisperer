@@ -3,17 +3,21 @@ console.log('<----- Injected script started running ----->');
 // return json type object {"MathItems": array of MathItem object}
 const getAllMathItems = () => {
 
+    let ret;
     const mathJaxObj = window.MathJax;
 
     if (mathJaxObj && mathJaxObj.version[0] == '2') {
-        talkToMathJaxV2();
+        console.log('Searching MathJax version' + mathJaxObj.version);
+        ret = talkToMathJaxV2();
     } else if (mathJaxObj && mathJaxObj.version[0] == '3') {
-        talkToMathJaxV3();
+        console.log('Searching MathJax version' + mathJaxObj.version);
+        ret = talkToMathJaxV3();
     } else { // no mathjax
-        main.mathItems = [];
-        console.log("MathJax and image math not found on site");
+        console.log('Searching lurking image math... wikmedia API?');
+        ret = searchImgAlt();
     }
 
+    return ret;
 }
 
 // search for images with math/latex keyword in class
