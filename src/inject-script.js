@@ -73,10 +73,9 @@ const talkToMathJaxV2 = () => {
     return mathItems;
 }
 
-// use v3 syntax to get math items
+// TODO use v3 syntax to get math items
 const talkToMathJaxV3 = () => {
     const arr = window.MathJax.startup.document.getMathItemsWithin(document);
-
 
 }
 
