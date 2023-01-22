@@ -4,6 +4,9 @@
   "name": "Find THE",
   "version": "0.0",
   "description": "Console log all the.",
+  "web_accessible_resources": [
+    "inject-script.js"
+  ],
   "content_scripts": [
     {
       "js": ["content.js"],
