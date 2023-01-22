@@ -18,10 +18,6 @@
     "matches": [ "<all_urls>" ]
   }],
 
-  "background": {
-    "service_worker": "src/background.js"
-  },
-
   "action": {
     "default_icon": "img/search.png",
     "default_title": "Whispererrrrrrr",
