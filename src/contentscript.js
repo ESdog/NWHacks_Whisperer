@@ -32,6 +32,7 @@ window.addEventListener("message", (event)=>{
     // this window's domain
     alert('Message received by contentscript')
     // event.data contains the message sent
+    alert('${event.data}')
     // txt.value=`Name is ${event.data.pName} Age is  ${event.data.pAge}` ;
 });
 
