@@ -29,7 +29,7 @@ function getRegexOccurrences(expression) {
     //alert("called RegEx highlight")
     const regex = new RegExp(expression, 'gi');
 
-    findTextInNode(window.body, expression);
+    findTextInNode(window.document.body, expression);
 }
 
 function findTextInNode (parentNode, expression) {
