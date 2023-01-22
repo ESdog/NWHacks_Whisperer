@@ -42,7 +42,10 @@ const searchImgAlt = () => {
         }
     }
     // combine arrays into object
-    return {ids: imgIds, tex: imgAlts};
+    // image math I classify as wikimedia
+    return {domain: `Wikimedia API`,
+        ids: imgIds,
+        tex: imgAlts};
 }
 
 const assignId = (element,cnt) => {
@@ -68,7 +71,9 @@ const talkToMathJaxV2 = () => {
     console.log(originalTexts);
 
     // combine arrays into object
-    const mathItems = {ids: inputIds, tex: originalTexts};
+    const mathItems = {domain: `MathJax Version ` + window.MathJax.version,
+        ids: inputIds,
+        tex: originalTexts};
 
     return mathItems;
 }
@@ -83,7 +88,6 @@ const talkToMathJaxV3 = () => {
 
 // post message with sender address, mathJax version (whether content empty), and content
 window.postMessage({ type: "FROM_PAGE", // address
-    jaxVersion: window.MathJax.version, // version (signature)
     essential: getAllMathItems() // tandem arrays with keys: ids, tex
 });
 
