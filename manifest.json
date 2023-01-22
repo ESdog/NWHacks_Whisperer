@@ -4,7 +4,7 @@
   "name": "Whisperer",
   "version": "1.0",
 
-  "description": "Lateral blog post demo extension",
+  "description": "whisperrrrr",
 
   "content_scripts" : [
     {
@@ -14,9 +14,13 @@
   ],
   
   "web_accessible_resources": [{
-    "resources": [ "mathScript.js" ],
+    "resources": [ "insert-script.js" ],
     "matches": [ "<all_urls>" ]
   }],
+
+  "background": {
+    "service_worker": "background.js"
+  },
 
   "action": {
     "default_icon": "img/search.png",
