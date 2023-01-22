@@ -1,6 +1,3 @@
-alert(`Content script should be working`)
-// alert is used as breakpoint
-
 console.log('<----- Content script started running ----->');
 
 function injectScript(file_path, tag) {
@@ -28,7 +25,14 @@ window.addEventListener("message", function (event) {
 }, false);
 
 
+// ========================= get from insert-script
+window.perfWatch = {};
 
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    alert(`onMesage got called`);
+    window.perfWatch[sender.tab.id] = message.essential || null;
+    alert(`tab id got set`)
+});
 
 
 //========== ignore below

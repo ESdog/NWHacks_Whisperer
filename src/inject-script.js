@@ -36,6 +36,7 @@ const getAllMathItems = () => {
 
 let mathItems = getAllMathItems();
 
+// set up arrays to store objects in same order
 let inputIds = [];
 let originalTexts = [];
 
@@ -44,6 +45,7 @@ for (const mathItem in mathItems) {
     originalTexts.push(mathItem.originalText);
 }
 
+// combine arrays into object
 mathItems = {ids: inputIds, tex: originalTexts};
 
 window.postMessage({ type: "FROM_PAGE", essential: mathItems });
