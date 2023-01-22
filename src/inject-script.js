@@ -19,6 +19,31 @@ const getAllMathItems = () => {
 // search for images with math/latex keyword in class
 const searchImgAlt = () => {
 
+    // set up arrays to store objects in same order
+    let imgIds = [];
+    let imgAlts = [];
+
+    const allImages = document.querySelectorAll(`img`);
+    for (let i = 0; i < allImages.length; i++) {
+        const img = allImages[i];
+
+        assignId(img,i);
+
+        console.log(img.id);
+        console.log(img.className);
+
+        if (img.className.includes(`math`) || (img.className.includes(`latex`))) {
+            imgIds.push(img.id);
+            imgAlts.push(img.alt);
+        }
+    }
+    // combine arrays into object
+    return {ids: imgIds, tex: imgAlts};
+}
+
+const assignId = (element,cnt) => {
+    const whisper = `whisperid` + cnt;
+    element.setAttribute('id',whisper);
 }
 
 // use v2 syntax to get math items
