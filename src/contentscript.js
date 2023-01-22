@@ -45,11 +45,6 @@ window.addEventListener("message", (event)=>{
 // ========== ignore below
 
 
-// returns array of all math jax objects
-const getAllMathItems = () => {
-    return ids,
-}
-
 // ERROR: does not like backslashes
 //returns a match of all the latex that matches userInputStr
 const scanItemsForMatch = (userInputString) => {
