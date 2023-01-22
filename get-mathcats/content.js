@@ -1,3 +1,6 @@
+alert(`Content script should be working`)
+// alert is used as breakpoint
+
 console.log('<----- Content script started running ----->');
 
 function injectScript(file_path, tag) {
