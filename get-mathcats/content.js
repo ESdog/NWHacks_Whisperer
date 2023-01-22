@@ -12,7 +12,7 @@ function injectScript(file_path, tag) {
     node.appendChild(script);
 }
 
-injectScript(chrome.extension.getURL('inject-script.js'), 'body');
+injectScript(chrome.runtime.getURL('inject-script.js'), 'body');
 
 window.addEventListener("message", function (event) {
     // only accept messages from the current tab
