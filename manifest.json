@@ -14,17 +14,17 @@
   ],
   
   "web_accessible_resources": [{
-    "resources": [ "insert-script.js" ],
+    "resources": [ "src/insert-script.js" ],
     "matches": [ "<all_urls>" ]
   }],
 
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "src/background.js"
   },
 
   "action": {
     "default_icon": "img/search.png",
-    "default_title": "Whisperer popup to be renamed",
+    "default_title": "Whispererrrrrrr",
     "default_popup": "src/whisper.html"
   }
 
