@@ -82,9 +82,12 @@ const scanItemsForMatch = (userInputString, ids, tex) => {
 const highlightElements = (matchedElementIds) => {
     for (let i = 0; i < matchedElementIds.length; i++) {
       
-    mathJaxItemObj = MathJax.Hub.getAllJax("MathJax-Element-4")[0];
+    const mathJaxItemObj = MathJax.Hub.getAllJax(matchedElementIds[i])[0];
+    // getAllJax returns array; specified id -> length 1
+
     let highlightedString = "\\color{blue}{" + mathJaxItemObj.originalText + "}";
     MathJax.Hub.Queue(["Text",mathJaxItemObj,highlightedString]);
+
     /*
     const locationOfElem = document.getElementById(matchedElementIds[i]);
     locationOfElem.parentElement.style.backgroundColor = "red"; //for now
