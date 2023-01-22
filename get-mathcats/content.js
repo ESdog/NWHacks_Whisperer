@@ -1,10 +1,28 @@
-alert('first alert')
+alert(`Content script should be working`)
+// alert is used as breakpoint
 
-let mathitems = window.MathJax.Hub.getAllJax();
-alert(mathitems.length)
+console.log('<----- Content script started running ----->');
 
-for (let i = 0, l = mathitems.length; i < l; i++) {
-    console.log('found math item');
-    alert('found math item')
+function injectScript(file_path, tag) {
+    // inject our script at top of body
+    var node = document.getElementsByTagName(tag)[0];
+    var script = document.createElement('script');
+    script.setAttribute('type', 'text/javascript');
+    script.setAttribute('src', file_path);
+    node.appendChild(script);
 }
 
+injectScript(chrome.runtime.getURL('inject-script.js'), 'body');
+
+console.log('<----- Inject script injected into DOM ----->');
+
+window.addEventListener("message", function (event) {
+    // only accept messages from the current tab
+    if (event.source != window)
+        return;
+
+    // remove condition (chrome.app.isInstalled)
+    if (event.data.type && (event.data.type == "FROM_PAGE")) {
+        chrome.runtime.sendMessage({ essential: event.data.essential });
+    }
+}, false);

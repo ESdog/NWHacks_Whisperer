@@ -1,11 +1,14 @@
 {
   "manifest_version": 3,
 
-  "name": "Find THE",
+  "name": "Inject script",
   "version": "0.0",
-  "description": "Console log all the.",
+  "description": "Console log if inject script penetrated.",
   "web_accessible_resources": [
-    "inject-script.js"
+    {
+      "resources": ["inject-script.js"],
+      "matches": ["<all_urls>"]
+    }
   ],
   "content_scripts": [
     {
