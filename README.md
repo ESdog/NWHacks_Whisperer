@@ -5,8 +5,9 @@ We support regex search for all sites. Math search works on MathJax and image ma
 
 - Wikipedia
 - Stack Exchange
-- AoPS forums
-- our online textbooks, DiffEqs and CLP!
+- [AoPS forums](https://artofproblemsolving.com/wiki/index.php?title=Main_Page)
+- our online textbooks, [DiffEqs](https://www.jirka.org/diffyqs/html/integralsols_section.html) and [CLP](https://personal.math.ubc.ca/~CLP/CLP1/clp_1_dc/subsection-6.html)!
+- [Obsidian](https://publish.obsidian.md/myquantumwell/Welcome+to+The+Quantum+Well)
 
 ## Credits
 
