@@ -66,7 +66,7 @@ const talkToMathJaxV2 = () => {
 const addHighlightPackageV2(mathJaxMathItems) {
     const firstItem = mathJaxMathItems[0];
     if (firstItem) {
-        firstItem.innerText += "\n\\require{color}"
+        firstItem.innerText = "\n\\require{color}" + firstItem.innerText;
     }
 }
 
