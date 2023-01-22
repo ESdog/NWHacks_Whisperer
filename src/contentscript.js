@@ -31,7 +31,7 @@ window.addEventListener("message", function (event) {
 
 
 
-//========== ignire below
+//========== ignore below
 
 
 // returns array of all math jax objects

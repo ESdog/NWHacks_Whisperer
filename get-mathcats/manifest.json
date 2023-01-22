@@ -4,6 +4,7 @@
   "name": "Inject script",
   "version": "0.0",
   "description": "Console log if inject script penetrated.",
+  "permissions": ["storage"],
   "web_accessible_resources": [
     {
       "resources": ["inject-script.js"],
