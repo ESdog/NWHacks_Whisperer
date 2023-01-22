@@ -20,7 +20,6 @@ window.postMessage({ type: "FROM_PAGE", essential: mathjax });
 
 // return json type object {"MathItems": array of MathItem object}
 const getAllMathItems = () => {
-    let main = {};
 
     const mathJaxObj = window.MathJax;
 
@@ -28,12 +27,16 @@ const getAllMathItems = () => {
         talkToMathJaxV2();
     } else if (mathJaxObj && mathJaxObj.version[0] == '3') {
         main.mathItems =  mathJaxObj.Hub.getAllJax();
-    } else { // no MathJax
+    } else { // no mathjax
         main.mathItems = [];
-        console.log("MathJax version 2 not found on site as window.MathJax = " + mathJaxObj );
+        console.log("MathJax and image math not found on site");
     }
 
-    return main;
+}
+
+// search for images with math/latex keyword in class
+const searchImgAlt = () => {
+
 }
 
 // use v2 syntax to get math items
@@ -54,14 +57,16 @@ const talkToMathJaxV2 = () => {
     console.log(originalTexts);
 
     // combine arrays into object
-    mathItems = {ids: inputIds, tex: originalTexts};
+    const mathItems = {ids: inputIds, tex: originalTexts};
 
     return mathItems;
 }
 
 // use v3 syntax to get math items
 const talkToMathJaxV3 = () => {
-    return window.MathJax.startup.document.getMathItemsWithin(document);
+    const arr = window.MathJax.startup.document.getMathItemsWithin(document);
+
+
 }
 
 
