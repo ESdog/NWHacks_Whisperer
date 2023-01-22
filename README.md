@@ -9,3 +9,5 @@
 - stackoverflow 
 - anyone who has ever answered one of the many questions we tried to google
 
+## Dev Guidelines
+- `chrome.storage` key is `mathItems`
