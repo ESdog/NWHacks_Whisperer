@@ -1,14 +1,5 @@
 .body{
-    height : 300px;
-    width : 300px;
     background-color: antiquewhite;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
 }
 
 form {
@@ -17,6 +8,7 @@ form {
     padding: 2px;
     border: 1px solid;
     border-radius: 5px;
+    width: 250px;
 }
 
 input[type="search"] {
@@ -36,7 +28,7 @@ input[type="search"]::placeholder {
 button[type="submit"] {
     text-indent: -999px;
     overflow: hidden;
-    width: 40px;
+    width: 50px;
     padding: 0;
     margin: 0;
     border: 1px solid transparent;
