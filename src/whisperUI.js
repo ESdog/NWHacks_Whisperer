@@ -6,6 +6,9 @@ const regexBtn = document.getElementById("RegexBtn");
 let state = false;
 
 search.addEventListener("keyup", function () {
+    getRegexOccurences(search.value);
+
+    // system below should be unneeded
     alert(search.value);
     window.postMessage({ type: "FROM_USER", essential: search.value });
 });
