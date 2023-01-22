@@ -3,7 +3,7 @@ console.log('<----- Injected script started running ----->');
 // return json type object {"MathJax": MathJax DOM object}
 function checkMathJax() {
     let main = {};
-
+   // FIXME window.MathJax is not a function
     main.MathJax = window.MathJax();
 
     return main;
