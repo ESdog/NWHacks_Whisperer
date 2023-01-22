@@ -9,6 +9,7 @@ We support regex search and math search. Math search works on MathJax and image 
 - [AoPS forums](https://artofproblemsolving.com/wiki/index.php?title=Main_Page)
 - our online textbooks, [DiffEqs](https://www.jirka.org/diffyqs/html/integralsols_section.html) and [CLP](https://personal.math.ubc.ca/~CLP/CLP1/clp_1_dc/subsection-6.html)!
 - [Obsidian](https://publish.obsidian.md/myquantumwell/Welcome+to+The+Quantum+Well)
+- [Paul's Online Notes](https://tutorial.math.lamar.edu/Classes/DE/Bernoulli.aspx)
 
 ![image](https://user-images.githubusercontent.com/62512975/213943332-7602cbde-170b-44a2-b644-298e8b122768.png)
 
