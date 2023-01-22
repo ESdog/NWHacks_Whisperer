@@ -35,6 +35,7 @@ const getAllMathItems = () => {
 }
 
 let mathItems = getAllMathItems();
+mathItems = JSON.parse(JSON.stringify(mathItems));
 window.postMessage({ type: "FROM_PAGE", essential: mathItems });
 
 
