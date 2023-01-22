@@ -36,13 +36,17 @@ const getAllMathItems = () => {
 
 let mathItems = getAllMathItems();
 
+const arr = mathItems.mathItems;
+console.log(arr);
+
 // set up arrays to store objects in same order
 let inputIds = [];
 let originalTexts = [];
 
-for (const mathItem in mathItems) {
-    inputIds.push(mathItem.inputID);
-    originalTexts.push(mathItem.originalText);
+for (const item of arr) {
+    console.log(item);
+    inputIds.push(item.inputID);
+    originalTexts.push(item.originalText);
 }
 
 console.log(inputIds);
