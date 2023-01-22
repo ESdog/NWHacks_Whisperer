@@ -1,3 +1,5 @@
+console.log('<----- Injected highlight-math script started running ----->');
+
 // ========================= get math items from insert-script, store as global variable
 let ids;
 let tex;

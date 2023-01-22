@@ -1,4 +1,4 @@
-console.log('<----- Injected script started running ----->');
+console.log('<----- Injected get-math script started running ----->');
 
 // return json type object {"MathItems": array of MathItem object}
 const getAllMathItems = () => {
