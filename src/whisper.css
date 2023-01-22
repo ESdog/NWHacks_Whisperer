@@ -57,11 +57,15 @@ input[type="search"]:focus {
 
 /* Change background color of buttons on hover */
 .tab:hover {
-    background-color: #ddd !important;
+    background-color: #ddd;
 }
 
-.tab:active {
-    background-color: #ccc !important;
+.active {
+    background-color: #ccc;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    width: 113px;
 }
 
 .tab{
