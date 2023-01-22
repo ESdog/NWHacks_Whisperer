@@ -1,3 +1,5 @@
+import {getRegexOccurences} from "./regex-search";
+
 const search = document.getElementById("searchText");
 const latexBtn = document.getElementById("LatexBtn");
 const regexBtn = document.getElementById("RegexBtn");
@@ -6,7 +8,7 @@ const regexBtn = document.getElementById("RegexBtn");
 let state = false;
 
 search.addEventListener("keyup", function () {
-    alert(search.value);
+    getRegexOccurences(search.value);
 });
 
 latexBtn.addEventListener("click", function () {
