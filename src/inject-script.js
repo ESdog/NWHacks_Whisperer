@@ -38,17 +38,13 @@ const getAllMathItems = () => {
 
 // use v2 syntax to get math items
 const talkToMathJaxV2 = () => {
-    const arrContainer = window.MathJax.Hub.getAllJax();
-    const arr = arrContainer.arrContainer;
-    console.log(arr);
-    console.log(arrContainer);
+    const arr = window.MathJax.Hub.getAllJax();
 
     // set up arrays to store objects in same order
     let inputIds = [];
     let originalTexts = [];
 
     for (const item of arr) {
-        console.log(item);
         // access using v2 keys
         inputIds.push(item.inputID);
         originalTexts.push(item.originalText);
