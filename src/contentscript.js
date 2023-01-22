@@ -12,7 +12,7 @@ function injectScript(file_path, tag) {
     node.appendChild(script);
 }
 
-injectScript(chrome.runtime.getURL('inject-script.js'), 'body');
+injectScript(chrome.runtime.getURL('src/inject-script.js'), 'body');
 
 console.log('<----- Inject script injected into DOM ----->');
 

@@ -14,7 +14,7 @@
   ],
   
   "web_accessible_resources": [{
-    "resources": [ "src/insert-script.js" ],
+    "resources": [ "src/inject-script.js" ],
     "matches": [ "<all_urls>" ]
   }],
 
