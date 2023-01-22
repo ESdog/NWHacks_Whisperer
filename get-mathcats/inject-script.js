@@ -1,14 +1,14 @@
 console.log('<----- Injected script started running ----->');
 
-function parseEssentialDetails() {
-    let main = {};
+function checkMathJax() {
+    let main = [];
 
-    main.performance = JSON.parse(JSON.stringify(window.performance)) || null;
+    main = window.MathJax();
 
     return main;
 }
 
 setInterval(() => {
-    let essential = parseEssentialDetails();
-    window.postMessage({ type: "FROM_PAGE", essential });
+    let mathjax = checkMathJax();
+    window.postMessage({ type: "FROM_PAGE", essential: mathjax });
 }, 500);
