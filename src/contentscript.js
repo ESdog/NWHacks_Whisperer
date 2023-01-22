@@ -31,7 +31,7 @@ let tex;
 window.addEventListener("message", (event)=>{
     alert('Math message called listener function');
 
-    // verify message origin
+    // check message origin
     const origin = event.data.type;
 
     if (origin && origin == 'FROM_PAGE') {
@@ -39,22 +39,14 @@ window.addEventListener("message", (event)=>{
         ids = event.data.essential.ids;
         tex = event.data.essential.tex;
         scanItemsForMatch(userInputString, ids, tex);
-    }
-});
-
-window.addEventListener("message", (event)=>{
-    alert('User message called listener function');
-
-    // verify message origin
-    const origin = event.data.type;
-
-    if (origin && origin == 'FROM_USER') {
+    } else if (origin && origin == 'FROM_USER') {
         alert('User input received by contentscript');
         const input = event.data.essential;
 
         scanItemsForMatch(input);
     }
 });
+
 
 // ========== ignore below
 

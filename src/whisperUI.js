@@ -9,7 +9,7 @@ search.addEventListener("keyup", function () {
     getRegexOccurences(search.value);
 
     // system below should be unneeded
-    alert(search.value);
+    console.log(search.value);
     window.postMessage({ type: "FROM_USER", essential: search.value });
 });
 

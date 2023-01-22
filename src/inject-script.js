@@ -25,8 +25,10 @@ const getAllMathItems = () => {
     const mathJaxObj = window.MathJax;
 
     if (mathJaxObj && mathJaxObj.version[0] == '2') {
+        talkToMathJaxV2();
+    } else if (mathJaxObj && mathJaxObj.version[0] == '3') {
         main.mathItems =  mathJaxObj.Hub.getAllJax();
-    } else { // error
+    } else { // no MathJax
         main.mathItems = [];
         console.log("MathJax version 2 not found on site as window.MathJax = " + mathJaxObj );
     }
@@ -34,27 +36,41 @@ const getAllMathItems = () => {
     return main;
 }
 
-let mathItems = getAllMathItems();
+// use v2 syntax to get math items
+const talkToMathJaxV2 = () => {
+    const arrContainer = window.MathJax.Hub.getAllJax();
+    const arr = arrContainer.arrContainer();
 
-const arr = mathItems.mathItems;
-console.log(arr);
+    // set up arrays to store objects in same order
+    let inputIds = [];
+    let originalTexts = [];
 
-// set up arrays to store objects in same order
-let inputIds = [];
-let originalTexts = [];
+    for (const item of arr) {
+        console.log(item);
+        // access using v2 keys
+        inputIds.push(item.inputID);
+        originalTexts.push(item.originalText);
+    }
 
-for (const item of arr) {
-    console.log(item);
-    inputIds.push(item.inputID);
-    originalTexts.push(item.originalText);
+    console.log(inputIds);
+    console.log(originalTexts);
+
+    // combine arrays into object
+    mathItems = {ids: inputIds, tex: originalTexts};
+
+    return mathItems;
 }
 
-console.log(inputIds);
-console.log(originalTexts);
+// use v3 syntax to get math items
+const talkToMathJaxV3 = () => {
+    return window.MathJax.startup.document.getMathItemsWithin(document);
+}
 
-// combine arrays into object
-mathItems = {ids: inputIds, tex: originalTexts};
 
-window.postMessage({ type: "FROM_PAGE", essential: mathItems });
+// post message with sender address, mathJax version (whether content empty), and content
+window.postMessage({ type: "FROM_PAGE", // address
+    jaxVersion: window.MathJax.version, // version (signature)
+    essential: getAllMathItems() // tandem arrays with keys: ids, tex
+});
 
 
