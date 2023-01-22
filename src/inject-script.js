@@ -20,6 +20,7 @@ window.postMessage({ type: "FROM_PAGE", essential: mathjax });
 
 // return json type object {"MathItems": array of MathItem object}
 const getAllMathItems = () => {
+
     const mathJaxObj = window.MathJax;
 
     if (mathJaxObj && mathJaxObj.version[0] == '2') {
@@ -62,14 +63,6 @@ const talkToMathJaxV2 = () => {
     return mathItems;
 }
 
-//adds import MathJax version of latex package import for color
-const addHighlightPackageV2 = (mathJaxMathItems) => {
-    const firstItem = mathJaxMathItems[0];
-    if (firstItem) {
-        firstItem.originalText = "\n\\require{color}" + firstItem.originalText;
-    }
-}
-
 // use v3 syntax to get math items
 const talkToMathJaxV3 = () => {
     const arr = window.MathJax.startup.document.getMathItemsWithin(document);
@@ -77,6 +70,13 @@ const talkToMathJaxV3 = () => {
 
 }
 
+//adds import MathJax version of latex package import for color
+const addHighlightPackageV2 = (mathJaxMathItems) => {
+    const firstItem = mathJaxMathItems[0];
+    if (firstItem) {
+        firstItem.originalText = "\n\\require{color}" + firstItem.originalText;
+    }
+}
 
 // post message with sender address, mathJax version (whether content empty), and content
 window.postMessage({ type: "FROM_PAGE", // address
