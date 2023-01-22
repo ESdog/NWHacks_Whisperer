@@ -81,16 +81,16 @@ const scanItemsForMatch = (userInputString, ids, tex) => {
 //@param matchedElementsIds is a list of String
 const highlightElements = (matchedElementIds) => {
     for (let i = 0; i < matchedElementIds.length; i++) {
-        const locationOfElem = document.getElementById(matchedElementIds[i]);
-        //!!! TODO
-        locationOfElem.parentElement.style.backgroundColor = "red"; //for now
-        /*
-        math = MathJax.Hub.getAllJax("MathJax-Element-15")[0];
-        MathJax.Hub.Queue(["Text",math,"\\frac{5}{2}"]);
-        */
-    }
+      
+    mathJaxItemObj = MathJax.Hub.getAllJax("MathJax-Element-4")[0];
+    let highlightedString = "\\color{blue}{" + mathJaxItemObj.originalText + "}";
+    MathJax.Hub.Queue(["Text",mathJaxItemObj,highlightedString]);
+    /*
+    const locationOfElem = document.getElementById(matchedElementIds[i]);
+    locationOfElem.parentElement.style.backgroundColor = "red"; //for now
+    */
+  }
 }
-
 
 //returns the same string except without escaped backslashes 
 //ie:""\\frac\n" returns "frac\n"

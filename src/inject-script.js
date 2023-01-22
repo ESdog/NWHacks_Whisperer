@@ -63,10 +63,10 @@ const talkToMathJaxV2 = () => {
 }
 
 //adds import MathJax version of latex package import for color
-const addHighlightPackageV2(mathJaxMathItems) {
+const addHighlightPackageV2 = (mathJaxMathItems) => {
     const firstItem = mathJaxMathItems[0];
     if (firstItem) {
-        firstItem.innerText = "\n\\require{color}" + firstItem.innerText;
+        firstItem.originalText = "\n\\require{color}" + firstItem.originalText;
     }
 }
 
