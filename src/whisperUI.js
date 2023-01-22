@@ -6,7 +6,11 @@ const regexBtn = document.getElementById("RegexBtn");
 let state = false;
 
 search.addEventListener("keyup", function () {
-    alert(search.value);
+    getRegexOccurences(search.value);
+
+    // system below should be unneeded
+    console.log(search.value);
+    window.postMessage({ type: "FROM_USER", essential: search.value });
 });
 
 latexBtn.addEventListener("click", function () {
