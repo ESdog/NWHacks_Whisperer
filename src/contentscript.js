@@ -26,12 +26,13 @@ window.addEventListener("message", function (event) {
 
 
 // ========================= get from insert-script
-window.perfWatch = {};
-
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    alert(`onMesage got called from contentscript`);
-    window.perfWatch[sender.tab.id] = message.essential || null;
-    alert(`tab id got set from contentscript`)
+window.addEventListener("message", (event)=>{
+    // Normally you would check event.origin
+    // To verify the targetOrigin matches
+    // this window's domain
+    alert('Message received by contentscript')
+    // event.data contains the message sent
+    // txt.value=`Name is ${event.data.pName} Age is  ${event.data.pAge}` ;
 });
 
 
