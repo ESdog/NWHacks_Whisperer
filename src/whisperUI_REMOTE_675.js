@@ -1,5 +1,6 @@
 //import {getRegexOccurrences} from "/Whisper/src/regex-search.js";
 
+
 const search = document.getElementById("searchText");
 const latexBtn = document.getElementById("LatexBtn");
 const regexBtn = document.getElementById("RegexBtn");
