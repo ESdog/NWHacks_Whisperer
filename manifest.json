@@ -4,7 +4,7 @@
   "name": "Whisperer",
   "version": "1.0",
 
-  "description": "whisperrrrr",
+  "description": "whisperrrrr! A MathJax Highlighter that identifies MathJax equations on screen through searching with latex or regex.",
 
   "content_scripts" : [
     {
@@ -19,7 +19,9 @@
   }],
 
   "action": {
-    "default_icon": "img/search.png",
+    "default_icon": {
+      "128": "img/128logo.png"
+    },
     "default_title": "Whispererrrrrrr",
     "default_popup": "src/whisper.html"
   }
