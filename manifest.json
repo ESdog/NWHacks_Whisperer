@@ -8,7 +8,7 @@
 
   "content_scripts" : [
     {
-      "js": ["contentscript.js"],
+      "js": ["src/contentscript.js"],
       "matches": ["<all_urls>"]
     }
   ],
@@ -19,9 +19,9 @@
   }],
 
   "action": {
-    "default_icon": "assets/test-icon.png",
+    "default_icon": "img/search.png",
     "default_title": "Whisperer popup to be renamed",
-    "default_popup": "popup.html"
+    "default_popup": "src/whisper.html"
   }
 
 }
