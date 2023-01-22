@@ -84,6 +84,10 @@ const highlightElements = (matchedElementIds) => {
         const locationOfElem = document.getElementById(matchedElementIds[i]);
         //!!! TODO
         locationOfElem.parentElement.style.backgroundColor = "red"; //for now
+        /*
+        math = MathJax.Hub.getAllJax("MathJax-Element-15")[0];
+        MathJax.Hub.Queue(["Text",math,"\\frac{5}{2}"]);
+        */
     }
 }
 

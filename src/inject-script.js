@@ -20,7 +20,6 @@ window.postMessage({ type: "FROM_PAGE", essential: mathjax });
 
 // return json type object {"MathItems": array of MathItem object}
 const getAllMathItems = () => {
-
     const mathJaxObj = window.MathJax;
 
     if (mathJaxObj && mathJaxObj.version[0] == '2') {
@@ -42,6 +41,7 @@ const searchImgAlt = () => {
 // use v2 syntax to get math items
 const talkToMathJaxV2 = () => {
     const arr = window.MathJax.Hub.getAllJax();
+    addHighlightPackageV2(arr);
 
     // set up arrays to store objects in same order
     let inputIds = [];
@@ -60,6 +60,14 @@ const talkToMathJaxV2 = () => {
     const mathItems = {ids: inputIds, tex: originalTexts};
 
     return mathItems;
+}
+
+//adds import MathJax version of latex package import for color
+const addHighlightPackageV2(mathJaxMathItems) {
+    const firstItem = mathJaxMathItems[0];
+    if (firstItem) {
+        firstItem.innerText += "\n\\require{color}"
+    }
 }
 
 // use v3 syntax to get math items
