@@ -38,6 +38,7 @@ window.addEventListener("message", (event)=>{
         alert('Math received by contentscript');
         ids = event.data.essential.ids;
         tex = event.data.essential.tex;
+        scanItemsForMatch(userInputString, ids, tex);
     }
 });
 
@@ -60,12 +61,11 @@ window.addEventListener("message", (event)=>{
 
 // ERROR: does not like backslashes
 //returns a match of all the latex that matches userInputStr
-const scanItemsForMatch = (userInputString) => {
-    const matchedElements = getAllMathItems().filter((mathItem) => {
+const scanItemsForMatch = (userInputString, ids, tex) => {
+    const matchedElements = tex().map((latexString) => {
         userInputString = userInputString;
-        const itemLatex = mathItem.originalText;
 
-        return itemLatex.includes(userInputString);
+        return latexString.includes(userInputString);
     });
 
     highlightElements(matchedElements);
@@ -80,5 +80,14 @@ const highlightElements = (matchedElements) => {
     }
 }
 
-
+//removes backslashes that are escaped, ie `\\`
+const removeBackslash = (textString) => {
+    let newString = "";
+    for (let i =0; i<textString.length; i++) {
+        if (textString[i] != "\\") {
+            newString += textString[i];
+        }
+    }
+    return newString;
+}
 
