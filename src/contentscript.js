@@ -29,18 +29,29 @@ window.addEventListener("message", function (event) {
 let ids;
 let tex;
 window.addEventListener("message", (event)=>{
-    // Normally you would check event.origin
-    // To verify the targetOrigin matches
-    // this window's domain
+
+    // verify message origin
     const origin = event.data.type;
 
     if (origin && origin == 'FROM_PAGE') {
-        alert('Message received by contentscript');
+        alert('Math received by contentscript');
         ids = event.data.essential.ids;
         tex = event.data.essential.tex;
     }
 });
 
+window.addEventListener("message", (event)=>{
+
+    // verify message origin
+    const origin = event.data.type;
+
+    if (origin && origin == 'FROM_USER') {
+        alert('User input received by contentscript');
+        const input = event.data.essential;
+
+        scanItemsForMatch(input);
+    }
+});
 
 // ========== ignore below
 

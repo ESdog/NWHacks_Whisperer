@@ -7,6 +7,7 @@ let state = false;
 
 search.addEventListener("keyup", function () {
     alert(search.value);
+    window.postMessage({ type: "FROM_USER", essential: search.value });
 });
 
 latexBtn.addEventListener("click", function () {
