@@ -8,6 +8,8 @@
 - google.com
 - stackoverflow 
 - anyone who has ever answered one of the many questions we tried to google
+- mathJax v2.7 Documentation https://docs.mathjax.org/en/v2.7-latest/tex.html#tex-and-latex-extensions
+- mathJax v3 Documentation https://docs.mathjax.org/en/v3.2-latest/upgrading/whats-new-3.0.html
+
 
 ## Dev Guidelines
-- `chrome.storage` key is `mathItems`

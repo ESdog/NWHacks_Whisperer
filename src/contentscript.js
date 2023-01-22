@@ -48,38 +48,75 @@ window.addEventListener("message", (event)=>{
 });
 
 
-// ========== ignore below
+// ========== utility functions below
+const ESCAPE_CHARACTERS = {
+    "\b": "b",
+    "\f": "f",
+    "\n": "n",
+    "\r": "r",
+    "\t": "t",
+    "\v": "v" 
+  }
 
 
-// ERROR: does not like backslashes
+//If "\u" and "\x" are in the strings, not supposed to be possible options, remained
+//INVARIANT: ids and tex are tandem worklists and the same length
 //returns a match of all the latex that matches userInputStr
+//scanItemsForMatch("\frac", ["valid-Id"], ["\\frac"]);  should match and highlight
 const scanItemsForMatch = (userInputString, ids, tex) => {
-    const matchedElements = tex().map((latexString) => {
-        userInputString = userInputString;
+    let matchedElementIds = [];
+    for (let i = 0; i < ids.length; i++) {
+        latexString = removeDoubleBackslash(tex[i]);
+        userInputString = removeSingleBackslash(userInputString);
 
-        return latexString.includes(userInputString);
-    });
-
-    highlightElements(matchedElements);
-    return matchedElements;
-}
-
-//@param matchedElements
-const highlightElements = (matchedElements) => {
-    for (let i = 0; i < matchedElements.length; i++) {
-        const locationOfElem = document.getElementById(matchedElements[i].inputID);
-        locationOfElem.parentElement.style.backgroundColor = "red"; //for now
-    }
-}
-
-//removes backslashes that are escaped, ie `\\`
-const removeBackslash = (textString) => {
-    let newString = "";
-    for (let i =0; i<textString.length; i++) {
-        if (textString[i] != "\\") {
-            newString += textString[i];
+        if (latexString.includes(userInputString)) {
+            matchedElementIds.push(ids[i]);
         }
     }
-    return newString;
+
+    highlightElements(matchedElementIds);
+    return matchedElementIds;
 }
+
+//@param matchedElementsIds is a list of String
+const highlightElements = (matchedElementIds) => {
+    for (let i = 0; i < matchedElementIds.length; i++) {
+      
+    mathJaxItemObj = MathJax.Hub.getAllJax("MathJax-Element-4")[0];
+    let highlightedString = "\\color{blue}{" + mathJaxItemObj.originalText + "}";
+    MathJax.Hub.Queue(["Text",mathJaxItemObj,highlightedString]);
+    /*
+    const locationOfElem = document.getElementById(matchedElementIds[i]);
+    locationOfElem.parentElement.style.backgroundColor = "red"; //for now
+    */
+  }
+}
+
+//returns the same string except without escaped backslashes 
+//ie:""\\frac\n" returns "frac\n"
+const removeDoubleBackslash = (texString) => {
+    let newString = "";
+    for (let i = 0; i < texString.length; i++) {
+      if (texString[i] != "\\") {
+        newString += texString[i];
+      }
+    }
+    return newString;
+  }
+
+  //returns the same string except without escaped backslashes 
+  //ie:"\frac\\n" returns "frac\\n"
+  const removeSingleBackslash = (texString) => {
+    const escapedKeys = Object.keys(ESCAPE_CHARACTERS)
+    let newString = "";
+    for (let i = 0; i < texString.length; i++) {
+      const charToParse = texString[i];
+      if (escapedKeys.includes(charToParse)) {
+        newString += ESCAPE_CHARACTERS[charToParse];
+      } else {
+        newString += charToParse;
+      }
+    }
+    return newString;
+  }
 
