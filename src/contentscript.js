@@ -44,8 +44,11 @@ const scanItemsForMatch = (userInputString) => {
 }
 
 //@param matchedElements
-const highlightElements = () => {
-    
+const highlightElements = (matchedElements) => {
+    for (let i = 0; i < matchedElements.length; i++) {
+        const locationOfElem = document.getElementById(matchedElements[i].inputID);
+        locationOfElem.parentElement.style.backgroundColor = "red"; //for now
+    }
 }
 
 
