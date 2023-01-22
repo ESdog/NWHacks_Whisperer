@@ -5,7 +5,7 @@ function checkMathJax() {
     let main = {};
    // solution to "window.MathJax is not a function" — it is just an attribute
     main.MathJax = window.MathJax;
-
+    alert(main.MathJax.version);
     return main;
 }
 
