@@ -17,6 +17,7 @@ const getAllMathItems = () => {
         ret = searchImgAlt();
     }
 
+    console.log(ret);
     return ret;
 }
 
@@ -32,9 +33,6 @@ const searchImgAlt = () => {
         const img = allImages[i];
 
         assignId(img,i);
-
-        console.log(img.id);
-        console.log(img.className);
 
         if (img.className.includes(`math`) || (img.className.includes(`latex`))) {
             imgIds.push(img.id);
@@ -66,9 +64,6 @@ const talkToMathJaxV2 = () => {
         inputIds.push(item.inputID);
         originalTexts.push(item.originalText);
     }
-
-    console.log(inputIds);
-    console.log(originalTexts);
 
     // combine arrays into object
     const mathItems = {domain: `MathJax Version ` + window.MathJax.version,
