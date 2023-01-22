@@ -29,9 +29,9 @@ window.addEventListener("message", function (event) {
 window.perfWatch = {};
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    alert(`onMesage got called`);
+    alert(`onMesage got called from contentscript`);
     window.perfWatch[sender.tab.id] = message.essential || null;
-    alert(`tab id got set`)
+    alert(`tab id got set from contentscript`)
 });
 
 
