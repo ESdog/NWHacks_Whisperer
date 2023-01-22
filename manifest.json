@@ -4,7 +4,7 @@
   "name": "Whisperer",
   "version": "1.0",
 
-  "description": "Lateral blog post demo extension",
+  "description": "whisperrrrr",
 
   "content_scripts" : [
     {
@@ -14,13 +14,17 @@
   ],
   
   "web_accessible_resources": [{
-    "resources": [ "mathScript.js" ],
+    "resources": [ "src/inject-script.js" ],
     "matches": [ "<all_urls>" ]
   }],
 
+  "background": {
+    "service_worker": "src/background.js"
+  },
+
   "action": {
     "default_icon": "img/search.png",
-    "default_title": "Whisperer popup to be renamed",
+    "default_title": "Whispererrrrrrr",
     "default_popup": "src/whisper.html"
   }
 
