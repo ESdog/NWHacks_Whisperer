@@ -8,7 +8,7 @@
 
   "content_scripts" : [
     {
-      "js": ["src/contentscript.js"],
+      "js": ["src/contentscript.js", "src/whisperUI.js", "src/regex-search.js"],
       "matches": ["<all_urls>"]
     }
   ],

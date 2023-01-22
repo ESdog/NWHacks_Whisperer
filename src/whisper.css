@@ -85,7 +85,3 @@ input[type="search"]:focus {
     border: 1px solid transparent;
     border-radius: inherit;
 }
-
-.highlight {
-    background-color: #EEF43B;
-}
