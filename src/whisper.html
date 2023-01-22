@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Whisper</title>
-  <link rel="stylesheet" href="whisper.css"/>
+    <link rel="stylesheet" href="whisper.css"/>
 </head>
 <body>
 <div class = "container">
+    <div class="mode">
+        <button class="tab" id = "LatexBtn">LaTeX</button>
+        <button class="tab" id = "RegexBtn">RegEx</button>
+        <img class="logo" src="../img/orangepotato.svg"/>
+    </div>
     <form>
         <input type="text" id= "searchText" placeholder="Search...">
-        <button id="searchImg" type="submit">Search</button>
+        <img class="searchImg" src="../img/search.png"></img>
     </form>
-    <script src = "whisperUI.js"></script>
 </div>
+<script src = "whisperUI.js"></script>
 </body>
 </html>
