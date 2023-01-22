@@ -14,6 +14,8 @@ function injectScript(file_path, tag) {
 
 injectScript(chrome.runtime.getURL('inject-script.js'), 'body');
 
+console.log('<----- Inject script injected into DOM ----->');
+
 window.addEventListener("message", function (event) {
     // only accept messages from the current tab
     if (event.source != window)
