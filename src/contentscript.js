@@ -29,6 +29,7 @@ window.addEventListener("message", function (event) {
 let ids;
 let tex;
 window.addEventListener("message", (event)=>{
+    alert('Math message called listener function');
 
     // verify message origin
     const origin = event.data.type;
@@ -41,6 +42,7 @@ window.addEventListener("message", (event)=>{
 });
 
 window.addEventListener("message", (event)=>{
+    alert('User message called listener function');
 
     // verify message origin
     const origin = event.data.type;
