@@ -5,14 +5,19 @@ function checkMathJax() {
     let main = {};
    // solution to "window.MathJax is not a function" — it is just an attribute
     main.MathJax = window.MathJax;
-    alert(main.MathJax.version);
+
+    // this breakpoint works!
+    alert(`MathJax Version:` + main.MathJax.version);
     return main;
 }
 
-setInterval(() => {
-    let mathjax = checkMathJax();
-    window.postMessage({ type: "FROM_PAGE", essential: mathjax });
-}, 500);
+// setInterval(() => {
+//     let mathjax = checkMathJax();
+//     window.postMessage({ type: "FROM_PAGE", essential: mathjax });
+// }, 500);
+
+let mathjax = checkMathJax();
+window.postMessage({ type: "FROM_PAGE", essential: mathjax });
 
 
 
