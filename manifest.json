@@ -3,12 +3,13 @@
 
   "name": "Whisperer",
   "version": "1.0",
+  "permissions": ["storage"],
 
   "description": "whisperrrrr! A MathJax Highlighter that identifies MathJax equations on screen through searching with latex or regex.",
 
   "content_scripts" : [
     {
-      "js": ["src/contentscript.js"],
+      "js": ["src/contentscript.js", "src/whisperUI.js", "src/regex-search.js"],
       "matches": ["<all_urls>"]
     }
   ],
