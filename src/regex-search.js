@@ -5,14 +5,15 @@ function escapeRegex(string) {
 
 // From https://stackoverflow.com/questions/4029109/javascript-regex-how-to-put-a-variable-inside-a-regular-expression
 // and https://codepen.io/tniezurawski/pen/wvzyVEE
-export function getRegexOccurrences(expression) {
-    alert("called method in RegexSearch")
+export function getRegexOccurences(expression) {
+    alert("Accessed second file");
     const regex = new RegExp(expression, 'gi');
 
-    let text = window.body.innerText;
+    let text = document.body.innerHTML;
+    b.innerHTML=b.innerHTML.replace(p,'$1<span style="background-color:red;">$2</span>');
+
     text = text.replace(/(<mark class="highlight">|<\/mark>)/gim, '');
 
     const newText = text.replace(regex, '<mark class="highlight">$&</mark>');
-    window.body.innerText = newText;
+    $box.innerHTML = newText;
 }
-
