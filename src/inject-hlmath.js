@@ -4,13 +4,12 @@ console.log('<----- Injected highlight-math script started running ----->');
 let ids;
 let tex;
 window.addEventListener("message", (event)=>{
-    alert('Math message called listener function');
 
     // check message origin
     const origin = event.data.type;
 
     if (origin && origin == 'FROM_PAGE') {
-        alert('Math received by inject-hlmath');
+        alert('Math objects from web have been caught by inject-hlmath');
         ids = event.data.essential.ids;
         tex = event.data.essential.tex;
     } else if (origin && origin == 'FROM_USER') {

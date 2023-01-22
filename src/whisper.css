@@ -29,6 +29,7 @@ input[type="text"]::placeholder {
 
 .searchImg {
     text-indent: -999px;
+    align-content: end;
     overflow: hidden;
     width: 32px;
     height: 30px;
