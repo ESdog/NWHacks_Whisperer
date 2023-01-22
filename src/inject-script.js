@@ -1,47 +1,61 @@
 console.log('<----- Injected script started running ----->');
 
-/*
-// return json type object {"MathJax": MathJax DOM object}
-function checkMathJax() {
-    let main = {};
-   // solution to "window.MathJax is not a function" — it is just an attribute
-    main.MathJax = window.MathJax;
-
-    // this breakpoint works!
-    alert(`MathJax Version:` + main.MathJax.version);
-    return main;
-}
-
-let mathjax = checkMathJax();
-// postMessage is not able to construct objects with methods, thus, flatten mathjax into string
-mathjax = JSON.parse(JSON.stringify(mathjax));
-window.postMessage({ type: "FROM_PAGE", essential: mathjax });
-*/
-
 // return json type object {"MathItems": array of MathItem object}
 const getAllMathItems = () => {
+
+    let ret;
     const mathJaxObj = window.MathJax;
 
     if (mathJaxObj && mathJaxObj.version[0] == '2') {
-        talkToMathJaxV2();
+        console.log('Searching MathJax version' + mathJaxObj.version);
+        ret = talkToMathJaxV2();
     } else if (mathJaxObj && mathJaxObj.version[0] == '3') {
-        main.mathItems =  mathJaxObj.Hub.getAllJax();
+        console.log('Searching MathJax version' + mathJaxObj.version);
+        ret = talkToMathJaxV3();
     } else { // no mathjax
-        main.mathItems = [];
-        console.log("MathJax and image math not found on site");
+        console.log('Searching lurking image math... wikmedia API?');
+        ret = searchImgAlt();
     }
 
+    return ret;
 }
 
 // search for images with math/latex keyword in class
 const searchImgAlt = () => {
 
+    // set up arrays to store objects in same order
+    let imgIds = [];
+    let imgAlts = [];
+
+    const allImages = document.querySelectorAll(`img`);
+    for (let i = 0; i < allImages.length; i++) {
+        const img = allImages[i];
+
+        assignId(img,i);
+
+        console.log(img.id);
+        console.log(img.className);
+
+        if (img.className.includes(`math`) || (img.className.includes(`latex`))) {
+            imgIds.push(img.id);
+            imgAlts.push(img.alt);
+        }
+    }
+    // combine arrays into object
+    // image math I classify as wikimedia
+    return {domain: `Wikimedia API`,
+        ids: imgIds,
+        tex: imgAlts};
+}
+
+const assignId = (element,cnt) => {
+    const whisper = `whisperid` + cnt;
+    element.setAttribute('id',whisper);
 }
 
 // use v2 syntax to get math items
 const talkToMathJaxV2 = () => {
     const arr = window.MathJax.Hub.getAllJax();
-    addHighlightPackageV2(arr);
 
     // set up arrays to store objects in same order
     let inputIds = [];
@@ -57,17 +71,11 @@ const talkToMathJaxV2 = () => {
     console.log(originalTexts);
 
     // combine arrays into object
-    const mathItems = {ids: inputIds, tex: originalTexts};
+    const mathItems = {domain: `MathJax Version ` + window.MathJax.version,
+        ids: inputIds,
+        tex: originalTexts};
 
     return mathItems;
-}
-
-//adds import MathJax version of latex package import for color
-const addHighlightPackageV2 = (mathJaxMathItems) => {
-    const firstItem = mathJaxMathItems[0];
-    if (firstItem) {
-        firstItem.originalText = "\n\\require{color}" + firstItem.originalText;
-    }
 }
 
 // use v3 syntax to get math items
@@ -80,7 +88,6 @@ const talkToMathJaxV3 = () => {
 
 // post message with sender address, mathJax version (whether content empty), and content
 window.postMessage({ type: "FROM_PAGE", // address
-    jaxVersion: window.MathJax.version, // version (signature)
     essential: getAllMathItems() // tandem arrays with keys: ids, tex
 });
 

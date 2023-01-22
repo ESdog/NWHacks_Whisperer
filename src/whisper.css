@@ -85,3 +85,14 @@ input[type="search"]:focus {
     border: 1px solid transparent;
     border-radius: inherit;
 }
+
+.highlight {
+    background-color: #EEF43B;
+}
+
+.foundLabel {
+    margin: 0;
+    padding: 7px 8px;
+    font-size: 10px;
+    border: 1px solid transparent;
+}
