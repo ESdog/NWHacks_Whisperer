@@ -17,6 +17,8 @@ function checkMathJax() {
 // }, 500);
 
 let mathjax = checkMathJax();
+// postMessage is not able to construct objects with methods, thus, flatten mathjax into string
+mathjax = JSON.parse(JSON.stringify(mathjax));
 window.postMessage({ type: "FROM_PAGE", essential: mathjax });
 
 
