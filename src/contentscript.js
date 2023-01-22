@@ -36,7 +36,7 @@ window.addEventListener("message", (event)=>{
 
     if (origin && origin == 'FROM_PAGE') {
         alert('Message received by contentscript');
-        ids = event.data.essential;
+        ids = event.data.essential.ids;
         tex = event.data.essential.tex;
     }
 });
