@@ -11,7 +11,7 @@ form {
     width: 250px;
 }
 
-input[type="search"] {
+input[type="text"] {
     background: transparent;
     margin: 0;
     padding: 7px 8px;
@@ -21,7 +21,7 @@ input[type="search"] {
     border-radius: inherit;
 }
 
-input[type="search"]::placeholder {
+input[type="text"]::placeholder {
     color: #bbb;
 }
 
