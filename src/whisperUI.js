@@ -5,6 +5,7 @@ const latexBtn = document.getElementById("LatexBtn");
 const regexBtn = document.getElementById("RegexBtn");
 
 // If false, search latex, else search regex
+// TODO
 let state = false;
 
 search.addEventListener("keyup", function () {
@@ -13,7 +14,7 @@ search.addEventListener("keyup", function () {
     }
     getRegexOccurences(search.value);
 
-    // system below should be unneeded
+    // TODO system below should be intercepted at background, not injected script
     console.log(search.value);
     window.postMessage({ type: "FROM_USER", essential: search.value });
 });
