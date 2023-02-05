@@ -11,14 +11,15 @@ We support regex search and math search. Math search works on MathJax and image 
 - our online textbooks, [DiffEqs](https://www.jirka.org/diffyqs/html/integralsols_section.html) and [CLP](https://personal.math.ubc.ca/~CLP/CLP1/clp_1_dc/subsection-6.html)!
 - [Obsidian](https://publish.obsidian.md/myquantumwell/Welcome+to+The+Quantum+Well)
 - [Paul's Online Notes](https://tutorial.math.lamar.edu/Classes/DE/Bernoulli.aspx)
-- [mathJax v2.7 Documentation] (https://docs.mathjax.org/en/v2.7-latest/tex.html#tex-and-latex-extensions)
-- [mathJax v3 Documentation] (https://docs.mathjax.org/en/v3.2-latest/upgrading/whats-new-3.0.html)
+
 
 
 ![image](https://user-images.githubusercontent.com/62512975/213943332-7602cbde-170b-44a2-b644-298e8b122768.png)
 
 ## Dev Guidelines
 See GitHub issues!
+- [mathJax v2.7 Documentation](https://docs.mathjax.org/en/v2.7-latest/tex.html#tex-and-latex-extensions)
+- [mathJax v3 Documentation](https://docs.mathjax.org/en/v3.2-latest/upgrading/whats-new-3.0.html)
 
 ## Credits
 
