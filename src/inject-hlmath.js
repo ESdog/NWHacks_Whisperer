@@ -12,11 +12,6 @@ window.addEventListener("message", (event)=>{
         alert('Math objects from web have been caught by inject-hlmath');
         ids = event.data.essential.ids;
         tex = event.data.essential.tex;
-    } else if (origin && origin == 'FROM_USER') {
-        alert('User input received by inject-hlmath');
-        const input = event.data.essential;
-
-        scanItemsForMatch(input, ids, tex);
     }
 });
 

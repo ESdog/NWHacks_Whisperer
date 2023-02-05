@@ -12,11 +12,11 @@ search.addEventListener("keyup", function () {
     if(search.value == "") {
         return;
     }
-    getRegexOccurences(search.value);
+    // getRegexOccurences(search.value);
 
-    // TODO system below should be intercepted at background, not injected script
-    console.log(search.value);
-    window.postMessage({ type: "FROM_USER", essential: search.value });
+    chrome.storage.local.set({ FROM_USER: search.value }).then(() => {
+        console.log("chrome.storage.local value under key FROM_USER is set to " + search.value);
+    });
 });
 
 latexBtn.addEventListener("click", function () {

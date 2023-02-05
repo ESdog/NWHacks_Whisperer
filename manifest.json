@@ -13,6 +13,10 @@
       "matches": ["<all_urls>"]
     }
   ],
+
+  "background": {
+    "service_worker": "src/background.js"
+  },
   
   "web_accessible_resources": [{
     "resources": [ "src/inject-script.js", "src/inject-hlmath.js" ],
