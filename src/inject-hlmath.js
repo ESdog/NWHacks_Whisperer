@@ -13,7 +13,7 @@ window.addEventListener("message", (event)=>{
         ids = event.data.essential.ids;
         tex = event.data.essential.tex;
     } else if (origin && origin == 'FROM_USER') {
-        alert('User input received by inject-hlmath');
+        alert('User input received by inject-hlmath with input' + input);
         const input = event.data.essential;
 
         scanItemsForMatch(input, ids, tex);

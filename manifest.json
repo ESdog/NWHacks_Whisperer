@@ -3,7 +3,7 @@
 
   "name": "Whisperer",
   "version": "1.0",
-  "permissions": ["storage"],
+  "permissions": ["storage", "tabs"],
 
   "description": "whisperrrrr! A MathJax Highlighter that identifies MathJax equations on screen through searching with latex or regex.",
 
@@ -13,6 +13,10 @@
       "matches": ["<all_urls>"]
     }
   ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
   
   "web_accessible_resources": [{
     "resources": [ "src/inject-script.js", "src/inject-hlmath.js" ],

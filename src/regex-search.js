@@ -6,7 +6,7 @@ function escapeRegex(string) {
 // From https://stackoverflow.com/questions/4029109/javascript-regex-how-to-put-a-variable-inside-a-regular-expression
 // and https://codepen.io/tniezurawski/pen/wvzyVEE
 export function getRegexOccurences(expression) {
-    alert("Regex search called");
+    alert("getRegexOccurences called with " + expression);
     const regex = new RegExp(expression, 'gi');
 
     let text = document.body.innerHTML;
