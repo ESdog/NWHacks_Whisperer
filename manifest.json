@@ -9,7 +9,7 @@
 
   "content_scripts" : [
     {
-      "js": ["src/contentscript.js", "src/whisperUI.js"],
+      "js": ["src/contentscript.js"],
       "matches": ["<all_urls>"]
     }
   ],
