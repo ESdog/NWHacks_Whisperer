@@ -8,4 +8,8 @@ chrome.storage.onchange.get(["FROM_USER"]).then((result) => {
     console.log("inject-script.js received user input " + result.FROM_USER);
 });
 
+window.addEventListener("message", (event) => {
+
+})
+
 
