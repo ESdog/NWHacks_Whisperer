@@ -9,7 +9,7 @@
 
   "content_scripts" : [
     {
-      "js": ["src/contentscript.js", "src/whisperUI.js", "src/regex-search.js"],
+      "js": ["src/contentscript.js", "src/whisperUI.js"],
       "matches": ["<all_urls>"]
     }
   ],
@@ -19,7 +19,7 @@
   },
   
   "web_accessible_resources": [{
-    "resources": [ "src/inject-script.js", "src/inject-hlmath.js" ],
+    "resources": [ "src/inject-script.js"],
     "matches": [ "<all_urls>" ]
   }],
 

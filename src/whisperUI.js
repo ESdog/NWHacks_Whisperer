@@ -1,14 +1,19 @@
-const search = document.getElementById("searchText");
+window.postMessage("hello from whisperUI","*");
+console.log('<----- whisper: bare-bones inject-script said hello ----->');
+window.addEventListener("message", (event) => {
+    console.log("whisperUI received: " + event.data);
+})
 
-/* Update chrome.storage.local whenever keyup in UI search box
-   @warning Works but throws Uncaught TypeError: Cannot read properties of null (reading 'addEventListener')
+/* Post user search as message on keyup
+   @warning Works in extension window but an extraneous Uncaught TypeError is thrown in webpage console
  */
+const search = window.document.getElementById("searchText");
+// @warning Extension console displays correct log; webpage console displays null
+console.log("element to attach keyup listener to:" + search);
 search.addEventListener("keyup", function () {
     if(search.value == "") {
         return;
     }
-
-    chrome.storage.local.set({ FROM_USER: search.value }).then(() => {
-        console.log("chrome.storage.local value under key FROM_USER is set to " + search.value);
-    });
+    window.postMessage(search.value,"*");
 });
+
