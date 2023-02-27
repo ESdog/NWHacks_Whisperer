@@ -22,12 +22,12 @@ console.log("chrome.tabs API as seen by whisperUI: ",chrome.tabs)
 
 /* Get tabID
  */
-var tabId;
 chrome.tabs.query({active: true, currentWindow: true}, function (tabArray) {
-    tabId = tabArray[0].id
+    var tabId = tabArray[0].id;
+    console.log("Tab id:", tabId);
+    var port = chrome.tabs.connect(tabId);
+    console.log("var port as seen by whisperUI: ",port);
+    port.postMessage({mymsg: "Knock knock"});
 });
-console.log("Tab id:", tabId);
 
-var port = chrome.tabs.connect(tabId);
-console.log("var port as seen by whisperUI: ",port);
-port.postMessage({mymsg: "Knock knock"});
+
