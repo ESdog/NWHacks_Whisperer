@@ -23,7 +23,7 @@ window.addEventListener("message", (event) => {
  */
 chrome.runtime.onConnect.addListener(function(port) {
     port.onMessage.addListener(function(msg) {
-        console.log(msg.mymsg);
+        console.log("contenscript port.onMessage fired:",msg.mymsg);
     });
 });
 
