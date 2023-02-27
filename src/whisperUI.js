@@ -20,22 +20,16 @@ console.log("chrome.tabs API as seen by whisperUI: ",chrome.tabs)
 /* Post user search as chrome message on keyup
  */
 
-/* Open connection by providing tabID
+/* Get tabID
  */
-function getCurrentTabId(cb) {
-    var query = {active: true, currentWindow: true};
-    chrome.tabs.query(query, function (tabArray) {
-        console.log("Tab id: " + tabArray[0].id);
-        cb(tabArray[0].id)
-    });
-}
-function connectToCurrentTab () {
-    getCurrentTabId(function(currentTabId) {
-        return chrome.tabs.connect(currentTabId, {name: "popup"});
-    });
-}
-var port = connectToCurrentTab();
-console.log("var port as seen by whisperUI: ",port)
+var tabId;
+chrome.tabs.query({active: true, currentWindow: true}, function (tabArray) {
+    tabId = tabArray[0].id
+});
+console.log("Tab id: " + tabId);
+
+var port = chrome.tabs.connect(tabId, {name: "knockknock"});
+console.log("var port as seen by whisperUI: ",port);
 port.postMessage({joke: "Knock knock"});
 port.onMessage.addListener(function(msg) {
     console.log(msg.question);
