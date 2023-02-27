@@ -15,7 +15,7 @@ search.addEventListener("keyup", function () {
     window.postMessage(search.value,"*");
 });
 
-console.log("chrome.tabs API as seen by whisperUI: ",chrome.tabs)
+console.log("chrome.tabs API as seen by whisperUI: ", chrome.tabs)
 
 /* Post user search as chrome message on keyup
  */
