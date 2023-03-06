@@ -2,6 +2,7 @@
  */
 var port;
 const search = document.getElementById("searchText");
+
 search.addEventListener("keyup", function () {
     console.log(search.value);
     port.postMessage({mymsg: search.value})
