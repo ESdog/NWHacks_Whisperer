@@ -1,5 +1,6 @@
 /* Send message from whisperUI to contentscript
  */
+
 var port;
 const search = document.getElementById("searchText");
 
