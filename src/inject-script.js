@@ -7,35 +7,6 @@ let mathItems = null;
 let highlightedElementIds = [];
 
 
-const initializeAll = () => {
-    const mathJaxObj = window.MathJax;
-
-    if (mathJaxObj && mathJaxObj.version[0] == '2') {
-        console.log('Searching MathJax version' + mathJaxObj.version);
-        windowType = "MathJax 2";
-        initializeMathJax2();
-    } else if (mathJaxObj && mathJaxObj.version[0] == '3') {
-        console.log('Searching MathJax version' + mathJaxObj.version);
-        windowType = "MathJax 3";
-        // TODO !!!
-    } else { // no mathjax
-        console.log('Searching lurking image math... wikmedia API?');
-        windowType = "Image";
-        // TODO !!!
-    }
-}
-initializeAll();
-
-window.postMessage("hello from inject-script","*");
-console.log('<----- whisper: bare-bones inject-script said hello ----->');
-window.addEventListener("message", (event) => {
-    console.log("inject-script received: " + event.data);
-    // TODO !!! : if recieved userInput, you will call the following functions depending on windowType:
-    //   if windowType = "MathJax 2"
-    //          you call: highlightMathJax2(string userInput);
-    highlightMathJax2(event.data);
-})
-
 // ================================================
 // INITIALIZATION FUNCTIONS
 // ================================================
@@ -136,4 +107,37 @@ const parseInBackslash = (texString) => {
     }
     return newString;
 }
+
+// ================================================
+// GET INJECT-SCRIPT GOING
+// ================================================
+
+const initializeAll = () => {
+    const mathJaxObj = window.MathJax;
+
+    if (mathJaxObj && mathJaxObj.version[0] == '2') {
+        console.log('Searching MathJax version' + mathJaxObj.version);
+        windowType = "MathJax 2";
+        initializeMathJax2();
+    } else if (mathJaxObj && mathJaxObj.version[0] == '3') {
+        console.log('Searching MathJax version' + mathJaxObj.version);
+        windowType = "MathJax 3";
+        // TODO !!!
+    } else { // no mathjax
+        console.log('Searching lurking image math... wikmedia API?');
+        windowType = "Image";
+        // TODO !!!
+    }
+}
+initializeAll();
+
+window.postMessage("hello from inject-script","*");
+console.log('<----- whisper: bare-bones inject-script said hello ----->');
+window.addEventListener("message", (event) => {
+    console.log("inject-script received: " + event.data);
+    // TODO !!! : if recieved userInput, you will call the following functions depending on windowType:
+    //   if windowType = "MathJax 2"
+    //          you call: highlightMathJax2(string userInput);
+    highlightMathJax2(event.data);
+})
 
