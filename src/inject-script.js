@@ -23,8 +23,8 @@ const initializeAll = () => {
         windowType = "Image";
         // TODO !!!
     }
-    initialize();
 }
+initializeAll();
 
 window.postMessage("hello from inject-script","*");
 console.log('<----- whisper: bare-bones inject-script said hello ----->');
