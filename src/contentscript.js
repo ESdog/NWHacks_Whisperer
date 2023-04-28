@@ -27,6 +27,7 @@ window.addEventListener("message", (event) => {
 chrome.runtime.onConnect.addListener(function(port) {
     port.onMessage.addListener(function(msg) {
         console.log("contentscript port.onMessage fired:",msg.mymsg);
+        window.postMessage(msg.mymsg,"*");
     });
 });
 
