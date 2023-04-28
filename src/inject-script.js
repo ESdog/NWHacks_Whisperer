@@ -23,6 +23,7 @@ const initializeMathJax2 = () => {
         // access using v2 keys
         inputIds.push(item.inputID);
         originalTexts.push(item.originalText);
+        console.log(`initializeMathJax2: adding tex ` + item.originalText);
     }
 
     // combine arrays into object
