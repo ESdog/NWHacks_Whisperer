@@ -19,11 +19,14 @@ window.addEventListener("message", (event) => {
     console.log("contentscript received: " + event.data);
 })
 
+
+
+
 /* Receive search value from whisperUI
  */
 chrome.runtime.onConnect.addListener(function(port) {
     port.onMessage.addListener(function(msg) {
-        console.log("contenscript port.onMessage fired:",msg.mymsg);
+        console.log("contentscript port.onMessage fired:",msg.mymsg);
     });
 });
 
