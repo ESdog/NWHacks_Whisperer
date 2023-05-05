@@ -86,9 +86,9 @@ const ESCAPE_CHARACTERS = {
 }
 
 const highlightWiki = (userInputString) => {
-    unhighlightElements(highlightedImgIds);
-    highlightedElementIds = scanItemsForMatch(userInputString, mathItems.ids, mathItems.tex);
-    highlightElements(highlightedElementIds);
+    unhighlightImgs(highlightedImgIds);
+    highlightedImgIds = scanItemsForMatch(userInputString, mathImgs.ids, mathImgs.tex);
+    highlightImgs(highlightedImgIds);
 }
 
 // If "\u" and "\x" are in the strings, not supposed to be possible options, remained
@@ -109,19 +109,15 @@ const scanItemsForMatch = (userInputString, ids, tex) => {
 }
 
 //@param matchedElementsIds is a list of String
-const highlightElements = (matchedElementIds) => {
-    let mathJaxItemObj;
-    let highlightedString;
+const highlightImgs = (matchedElementIds) => {
     for (let i = 0; i < matchedElementIds.length; i++) {
-        mathJaxItemObj = MathJax.Hub.getAllJax(matchedElementIds[i])[0];
-        highlightedString = "\\color{blue}{" + mathJaxItemObj.originalText + "}";
-        MathJax.Hub.Queue(["Text",mathJaxItemObj,highlightedString]);
+        document.getElementById(matchedElementIds[i]).style.background = "red";
     }
     return matchedElementIds;
 }
 
 //@param matchedElementsIds is a list of String
-const unhighlightElements = (matchedElementIds) => {
+const unhighlightImgs = (matchedElementIds) => {
     for (let i = 0; i < matchedElementIds.length; i++) {
         document.getElementById(matchedElementIds[i]).style.background = null;
     }
