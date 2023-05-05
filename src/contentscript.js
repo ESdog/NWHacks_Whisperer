@@ -45,6 +45,8 @@ const initializeWikimedia = () => {
         // since wikimedia images do not come with html id, we assign id
         item.setAttribute("id", `whisper-id-` + i);
         console.log(`initializeWikimedia assigned id: ` + item.id);  // item is updated live
+        ids.push(item.id);
+        i++;
     }
 
     // combine arrays into object
@@ -55,21 +57,6 @@ const initializeWikimedia = () => {
 }
 
 initializeWikimedia();
-
-// ================================================
-// COMMUNICATION FUNCTIONS
-// ================================================
-
-
-/* Receive search value from whisperUI
- */
-chrome.runtime.onConnect.addListener(function(port) {
-    port.onMessage.addListener(function(msg) {
-        console.log("contentscript received via port:",msg.mymsg);
-        window.postMessage(msg.mymsg,"*");
-    });
-});
-
 
 
 // ================================================
@@ -88,6 +75,9 @@ const ESCAPE_CHARACTERS = {
 const highlightWiki = (userInputString) => {
     unhighlightImgs(highlightedImgIds);
     highlightedImgIds = scanItemsForMatch(userInputString, mathImgs.ids, mathImgs.tex);
+    console.log(`ids`,mathImgs.ids);
+    console.log(`tex`,mathImgs.tex);
+    console.log(`highlightedImgIds`,highlightedImgIds);
     highlightImgs(highlightedImgIds);
 }
 
@@ -140,6 +130,25 @@ const parseInBackslash = (texString) => {
     }
     return newString;
 }
+
+
+// ================================================
+// COMMUNICATION FUNCTIONS
+// ================================================
+
+
+/* Receive search value from whisperUI
+ */
+chrome.runtime.onConnect.addListener(function(port) {
+    port.onMessage.addListener(function(msg) {
+        console.log("contentscript received via port:",msg.mymsg);
+        window.postMessage(msg.mymsg,"*");
+
+        // search in wikimedia API
+        highlightWiki(msg.mymsg);
+        console.log("contentscript will highlight:",msg.mymsg);
+    });
+});
 
 
 
