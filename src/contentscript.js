@@ -98,7 +98,7 @@ const scanItemsForMatch = (userInputString, ids, tex) => {
 //@param matchedElementsIds is a list of String
 const highlightImgs = (matchedElementIds) => {
     for (let i = 0; i < matchedElementIds.length; i++) {
-        document.getElementById(matchedElementIds[i]).style.background = "red";
+        document.getElementById(matchedElementIds[i]).style.background = "#b0ebe4";
     }
     return matchedElementIds;
 }
