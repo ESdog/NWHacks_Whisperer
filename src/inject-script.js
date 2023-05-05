@@ -48,10 +48,10 @@ const highlightMathJax2 = (userInputString) => {
     highlightElements(highlightedElementIds);
 }
 
-//If "\u" and "\x" are in the strings, not supposed to be possible options, remained
-//INVARIANT: ids and tex are tandem worklists and the same length
-//returns a match of all the latex that matches userInputStr
-//scanItemsForMatch("\frac", ["valid-Id"], ["\\frac"]);  should match and highlight
+// If "\u" and "\x" are in the strings, not supposed to be possible options, remained
+// INVARIANT: ids and tex are tandem worklists and the same length
+// returns a match of all the latex that matches userInputStr
+// scanItemsForMatch("\frac", ["valid-Id"], ["\\frac"]);  should match and highlight
 const scanItemsForMatch = (userInputString, ids, tex) => {
     let matchedElementIds = [];
     for (let i = 0; i < ids.length; i++) {
