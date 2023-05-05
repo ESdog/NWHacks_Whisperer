@@ -75,9 +75,6 @@ const ESCAPE_CHARACTERS = {
 const highlightWiki = (userInputString) => {
     unhighlightImgs(highlightedImgIds);
     highlightedImgIds = scanItemsForMatch(userInputString, mathImgs.ids, mathImgs.tex);
-    console.log(`ids`,mathImgs.ids);
-    console.log(`tex`,mathImgs.tex);
-    console.log(`highlightedImgIds`,highlightedImgIds);
     highlightImgs(highlightedImgIds);
 }
 
