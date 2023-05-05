@@ -5,7 +5,7 @@
   "version": "1.0",
   "permissions": ["storage"],
 
-  "description": "whisperrrrr! A MathJax Highlighter that identifies MathJax equations on screen through searching with latex or regex.",
+  "description": "cmd-f for math.",
 
   "content_scripts" : [
     {
