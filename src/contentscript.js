@@ -18,8 +18,6 @@ function injectScript(file_path, tag) {
 injectScript(chrome.runtime.getURL('src/inject-script.js'), 'body');
 console.log('<----- whisper: bare-bones inject script injected into DOM ----->');
 
-window.postMessage("hello from contentscript","*");
-console.log('<----- whisper: bare-bones contentscript said hello ----->');
 window.addEventListener("message", (event) => {
     console.log("contentscript received: " + event.data);
 })

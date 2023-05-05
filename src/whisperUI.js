@@ -11,8 +11,6 @@ chrome.tabs.query({active: true, currentWindow: true}, function (tabArray) {
     console.log("whisperUI tab id:", tabId);
 
     port = chrome.tabs.connect(tabId);
-    port.postMessage({mymsg: "hello hello from whisperUI through chrome.runtime.port!"});
-    console.log('<----- sent message from whisperUI to contentscript via chrome.runtime.port ----->');
 });
 
 /* Send message from whisperUI to contentscript
