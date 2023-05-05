@@ -19,7 +19,7 @@ injectScript(chrome.runtime.getURL('src/inject-script.js'), 'body');
 console.log('<----- whisper: bare-bones inject script injected into DOM ----->');
 
 window.addEventListener("message", (event) => {
-    console.log("contentscript received: " + event.data);
+    console.log("contentscript received via window: " + event.data);
 })
 
 /* Catalogue all math images.
@@ -62,7 +62,7 @@ initializeWikimedia();
  */
 chrome.runtime.onConnect.addListener(function(port) {
     port.onMessage.addListener(function(msg) {
-        console.log("contentscript port.onMessage fired:",msg.mymsg);
+        console.log("contentscript received via port:",msg.mymsg);
         window.postMessage(msg.mymsg,"*");
     });
 });
