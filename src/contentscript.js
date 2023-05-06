@@ -30,7 +30,8 @@ window.addEventListener("message", (event) => {
  */
 const initializeWikimedia = () => {
     // 'mwe-math-fallback-image-inline' is the specific math image tag used by wikipedia
-    const arr = document.querySelectorAll('img.mwe-math-fallback-image-inline');
+    let arr = document.querySelectorAll("img.mwe-math-fallback-image-inline");
+    arr = arr.prototype.push.apply(arr,document.querySelectorAll("img.mwe-math-fallback-image-display"));
 
     // set up arrays to store objects in same order
     let ids = [];
