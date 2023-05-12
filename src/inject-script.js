@@ -55,7 +55,7 @@ const highlightMathJax2 = (userInputString) => {
 //INVARIANT: ids and tex are tandem worklists and the same length
 //returns a match of all the latex that matches userInputStr
 //scanItemsForMatch("\frac", ["valid-Id"], ["\\frac"]);  should match and highlight
-const scanItemsForMatch = (userInputString, ids, tex) => {
+ const scanItemsForMatch = (userInputString, ids, tex) => {
     let matchedElementIds = [];
     userInputString = parseInBackslash(userInputString);
     if (userInputString.length == 0) return matchedElementIds;
@@ -74,8 +74,8 @@ const highlightElements = (matchedElementIds) => {
     let mathJaxItemObj;
     let highlightedString;
     for (let i = 0; i < matchedElementIds.length; i++) {
-        mathJaxItemObj = document.getElementById(matchedElementIds[i]);
-        mathJaxItemObj.parentElement.style.background = 'red';
+        mathJaxItemObj = document.getElementById(matchedElementIds[i] + "-Frame");
+        mathJaxItemObj.style.background = 'red';
     }
     return matchedElementIds;
 }
@@ -85,8 +85,8 @@ const unhighlightElements = (matchedElementIds) => {
     let mathJaxItemObj;
     let unhighlightedString;
     for (let i = 0; i < matchedElementIds.length; i++) {
-        mathJaxItemObj = document.getElementById(matchedElementIds[i]);
-        mathJaxItemObj.parentElement.style.background = 'white';
+        mathJaxItemObj = document.getElementById(matchedElementIds[i] + "-Frame");
+        mathJaxItemObj.style.background = 'white';
     }
     return matchedElementIds;
 }
