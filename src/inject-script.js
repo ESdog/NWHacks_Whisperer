@@ -57,10 +57,11 @@ const highlightMathJax2 = (userInputString) => {
 //scanItemsForMatch("\frac", ["valid-Id"], ["\\frac"]);  should match and highlight
 const scanItemsForMatch = (userInputString, ids, tex) => {
     let matchedElementIds = [];
+    userInputString = parseInBackslash(userInputString);
+    if (userInputString.length == 0) return matchedElementIds;
+
     for (let i = 0; i < ids.length; i++) {
         let latexString = tex[i];
-        userInputString = parseInBackslash(userInputString);
-
         if (latexString.includes(userInputString)) {
             matchedElementIds.push(ids[i]);
         }
@@ -73,9 +74,8 @@ const highlightElements = (matchedElementIds) => {
     let mathJaxItemObj;
     let highlightedString;
     for (let i = 0; i < matchedElementIds.length; i++) {
-        mathJaxItemObj = MathJax.Hub.getAllJax(matchedElementIds[i])[0];
-        highlightedString = "\\color{blue}{" + mathJaxItemObj.originalText + "}";
-        MathJax.Hub.Queue(["Text",mathJaxItemObj,highlightedString]);
+        mathJaxItemObj = document.getElementById(matchedElementIds[i]);
+        mathJaxItemObj.parentElement.style.background = 'red';
     }
     return matchedElementIds;
 }
@@ -85,9 +85,8 @@ const unhighlightElements = (matchedElementIds) => {
     let mathJaxItemObj;
     let unhighlightedString;
     for (let i = 0; i < matchedElementIds.length; i++) {
-        mathJaxItemObj = MathJax.Hub.getAllJax(matchedElementIds[i])[0];
-        unhighlightedString = mathJaxItemObj.originalText.substring(13, mathJaxItemObj.originalText.length - 1);
-        MathJax.Hub.Queue(["Text",mathJaxItemObj,unhighlightedString]);
+        mathJaxItemObj = document.getElementById(matchedElementIds[i]);
+        mathJaxItemObj.parentElement.style.background = 'white';
     }
     return matchedElementIds;
 }
