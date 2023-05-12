@@ -1,58 +1,15 @@
-console.log('<----- Injected get-math script started running ----->');
+console.log('<----- whisper: bare-bones inject-script started running ----->');
+let windowType = "";
+let mathItems = null;
+let highlightedElementIds = [];
 
-// return json type object {"MathItems": array of MathItem object}
-const getAllMathItems = () => {
 
-    let ret;
-    const mathJaxObj = window.MathJax;
-
-    if (mathJaxObj && mathJaxObj.version[0] == '2') {
-        console.log('Searching MathJax version' + mathJaxObj.version);
-        ret = talkToMathJaxV2();
-    } else if (mathJaxObj && mathJaxObj.version[0] == '3') {
-        console.log('Searching MathJax version' + mathJaxObj.version);
-        ret = talkToMathJaxV3();
-    } else { // no mathjax
-        console.log('Searching lurking image math... wikmedia API?');
-        ret = searchImgAlt();
-    }
-
-    console.log(ret);
-    return ret;
-}
-
-// search for images with math/latex keyword in class
-const searchImgAlt = () => {
-
-    // set up arrays to store objects in same order
-    let imgIds = [];
-    let imgAlts = [];
-
-    const allImages = document.querySelectorAll(`img`);
-    for (let i = 0; i < allImages.length; i++) {
-        const img = allImages[i];
-
-        assignId(img,i);
-
-        if (img.className.includes(`math`) || (img.className.includes(`latex`))) {
-            imgIds.push(img.id);
-            imgAlts.push(img.alt);
-        }
-    }
-    // combine arrays into object
-    // image math I classify as wikimedia
-    return {domain: `Wikimedia API`,
-        ids: imgIds,
-        tex: imgAlts};
-}
-
-const assignId = (element,cnt) => {
-    const whisper = `whisperid` + cnt;
-    element.setAttribute('id',whisper);
-}
+// ================================================
+// INITIALIZATION FUNCTIONS
+// ================================================
 
 // use v2 syntax to get math items
-const talkToMathJaxV2 = () => {
+const initializeMathJax2 = () => {
     const arr = window.MathJax.Hub.getAllJax();
 
     // set up arrays to store objects in same order
@@ -63,31 +20,118 @@ const talkToMathJaxV2 = () => {
         // access using v2 keys
         inputIds.push(item.inputID);
         originalTexts.push(item.originalText);
+        console.log(`initializeMathJax2 is adding latex: ` + item.originalText);
     }
 
     // combine arrays into object
-    const mathItems = {domain: `MathJax Version ` + window.MathJax.version,
+    mathItems = {
+        version: `MathJax Version ` + window.MathJax.version,
         ids: inputIds,
         tex: originalTexts};
-
-    return mathItems;
 }
 
-// TODO use v3 syntax to get math items
-const talkToMathJaxV3 = () => {
-    const arr = window.MathJax.startup.document.getMathItemsWithin(document);
+// ================================================
+// HIGHLIGHTER FUNCTIONS
+// ================================================
+const ESCAPE_CHARACTERS = {
+    "\b": "\\b",
+    "\f": "\\f",
+    "\n": "\\n",
+    "\r": "\\r",
+    "\t": "\\t",
+    "\v": "\\v"
+}
 
-// combine arrays into object
-    const mathItems = {domain: `MathJax Version ` + window.MathJax.version,
-        ids: [],
-        tex: []};
+const highlightMathJax2 = (userInputString) => {
+    unhighlightElements(highlightedElementIds);
+    highlightedElementIds = scanItemsForMatch(userInputString, mathItems.ids, mathItems.tex);
+    highlightElements(highlightedElementIds);
+}
 
-    return mathItems;}
+// If "\u" and "\x" are in the strings, not supposed to be possible options, remained
+// INVARIANT: ids and tex are tandem worklists and the same length
+// returns a match of all the latex that matches userInputStr
+// scanItemsForMatch("\frac", ["valid-Id"], ["\\frac"]);  should match and highlight
+const scanItemsForMatch = (userInputString, ids, tex) => {
+    let matchedElementIds = [];
+    for (let i = 0; i < ids.length; i++) {
+        let latexString = tex[i];
+        userInputString = parseInBackslash(userInputString);
+
+        if (latexString.includes(userInputString)) {
+            matchedElementIds.push(ids[i]);
+        }
+    }
+    return matchedElementIds;
+}
+
+//@param matchedElementsIds is a list of String
+const highlightElements = (matchedElementIds) => {
+    let mathJaxItemObj;
+    let highlightedString;
+    for (let i = 0; i < matchedElementIds.length; i++) {
+        mathJaxItemObj = MathJax.Hub.getAllJax(matchedElementIds[i])[0];
+        highlightedString = "\\color{blue}{" + mathJaxItemObj.originalText + "}";
+        MathJax.Hub.Queue(["Text",mathJaxItemObj,highlightedString]);
+    }
+    return matchedElementIds;
+}
+
+//@param matchedElementsIds is a list of String
+const unhighlightElements = (matchedElementIds) => {
+    let mathJaxItemObj;
+    let unhighlightedString;
+    for (let i = 0; i < matchedElementIds.length; i++) {
+        mathJaxItemObj = MathJax.Hub.getAllJax(matchedElementIds[i])[0];
+        unhighlightedString = mathJaxItemObj.originalText.substring(13, mathJaxItemObj.originalText.length - 1);
+        MathJax.Hub.Queue(["Text",mathJaxItemObj,unhighlightedString]);
+    }
+    return matchedElementIds;
+}
 
 
-// post message with sender address, mathJax version (whether content empty), and content
-window.postMessage({ type: "FROM_PAGE", // address
-    essential: getAllMathItems() // tandem arrays with keys: ids, tex
-});
+//returns the same string except without escaped backslashes
+//ie:"\frac\\n" returns "\\frac\\n"
+const parseInBackslash = (texString) => {
+    const escapedKeys = Object.keys(ESCAPE_CHARACTERS)
+    let newString = "";
+    for (let i = 0; i < texString.length; i++) {
+        const charToParse = texString[i];
+        if (escapedKeys.includes(charToParse)) {
+            newString += ESCAPE_CHARACTERS[charToParse];
+        } else {
+            newString += charToParse;
+        }
+    }
+    return newString;
+}
 
+// ================================================
+// GET INJECT-SCRIPT GOING
+// ================================================
+
+const initializeAll = () => {
+    const mathJaxObj = window.MathJax;
+
+    if (mathJaxObj && mathJaxObj.version[0] == '2') {
+        console.log('Searching MathJax version' + mathJaxObj.version);
+        windowType = "MathJax 2";
+        initializeMathJax2();
+    } else if (mathJaxObj && mathJaxObj.version[0] == '3') {
+        console.log('Searching MathJax version' + mathJaxObj.version);
+        windowType = "MathJax 3";
+        // TODO !!!
+    } else { // no mathjax
+        console.log('Searching lurking image math... wikmedia API?');
+        windowType = "Image";
+        // TODO !!!
+    }
+}
+initializeAll();
+
+window.addEventListener("message", (event) => {
+    console.log("inject-script received: " + event.data);
+
+    highlightMathJax2(event.data);
+})
 

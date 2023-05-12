@@ -5,11 +5,11 @@
   "version": "1.0",
   "permissions": ["storage", "tabs"],
 
-  "description": "whisperrrrr! A MathJax Highlighter that identifies MathJax equations on screen through searching with latex or regex.",
+  "description": "cmd-f for math.",
 
   "content_scripts" : [
     {
-      "js": ["src/contentscript.js", "src/whisperUI.js", "src/regex-search.js"],
+      "js": ["src/contentscript.js"],
       "matches": ["<all_urls>"]
     }
   ],
@@ -19,7 +19,7 @@
   },
   
   "web_accessible_resources": [{
-    "resources": [ "src/inject-script.js", "src/inject-hlmath.js" ],
+    "resources": [ "src/inject-script.js"],
     "matches": [ "<all_urls>" ]
   }],
 
@@ -27,7 +27,7 @@
     "default_icon": {
       "128": "img/128logo.png"
     },
-    "default_title": "Whispererrrrrrr",
+    "default_title": "Whisperer",
     "default_popup": "src/whisper.html"
   }
 
