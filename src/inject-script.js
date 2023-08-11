@@ -46,6 +46,7 @@ const ESCAPE_CHARACTERS = {
 }
 
 const highlightMathJax2 = (userInputString) => {
+    console.log("highlightMathJax3 called")
     unhighlightElements(highlightedElementIds);
     highlightedElementIds = scanItemsForMatch(userInputString, mathItems.ids, mathItems.tex);
     highlightElements(highlightedElementIds);
@@ -55,7 +56,7 @@ const highlightMathJax2 = (userInputString) => {
 //INVARIANT: ids and tex are tandem worklists and the same length
 //returns a match of all the latex that matches userInputStr
 //scanItemsForMatch("\frac", ["valid-Id"], ["\\frac"]);  should match and highlight
- const scanItemsForMatch = (userInputString, ids, tex) => {
+ const scanItemsForMatch2 = (userInputString, ids, tex) => {
     let matchedElementIds = [];
     userInputString = parseInBackslash(userInputString);
     if (userInputString.length == 0) return matchedElementIds;
@@ -70,7 +71,7 @@ const highlightMathJax2 = (userInputString) => {
 }
 
 //@param matchedElementsIds is a list of String
-const highlightElements = (matchedElementIds) => {
+const highlightElements2 = (matchedElementIds) => {
     let mathJaxItemObj;
     let highlightedString;
     for (let i = 0; i < matchedElementIds.length; i++) {
@@ -81,7 +82,7 @@ const highlightElements = (matchedElementIds) => {
 }
 
 //@param matchedElementsIds is a list of String
-const unhighlightElements = (matchedElementIds) => {
+const unhighlightElements2 = (matchedElementIds) => {
     let mathJaxItemObj;
     let unhighlightedString;
     for (let i = 0; i < matchedElementIds.length; i++) {
@@ -135,9 +136,16 @@ window.postMessage("hello from inject-script","*");
 console.log('<----- whisper: bare-bones inject-script said hello ----->');
 window.addEventListener("message", (event) => {
     console.log("inject-script received: " + event.data);
-    // TODO !!! : if recieved userInput, you will call the following functions depending on windowType:
-    //   if windowType = "MathJax 2"
-    //          you call: highlightMathJax2(string userInput);
-    highlightMathJax2(event.data);
+    // TODO !!!: make functions for each window type
+    switch (windowType) {
+        case "MathJax 2": 
+            alert("MathJax version 2 searching not provided");
+            break;
+        case "MathJax 3":
+            highlightMathJax3(event.data);
+            break;
+        default: //no mathjax
+    }
+    
 })
 
